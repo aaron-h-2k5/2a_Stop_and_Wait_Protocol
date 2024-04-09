@@ -1,4 +1,6 @@
-# 2a_Stop_and_Wait_Protocol
+# Ex-2a Stop_and_Wait_Protocol
+## Register Number: 212223040001
+## Name: H. AARON
 ## AIM 
 To write a python program to perform stop and wait protocol
 ## ALGORITHM
@@ -9,6 +11,39 @@ To write a python program to perform stop and wait protocol
 5. If your frames reach the server it will send ACK signal to client
 6. Stop the Program
 ## PROGRAM
+### Client:
+```
+import socket
+s=socket.socket()
+s.bind(('localhost',8000))
+s.listen(5)
+c,addr=s.accept()
+while True:
+ i=input("Enter a data: ")
+ c.send(i.encode())
+ ack=c.recv(1024).decode()
+ if ack:
+   print(ack)
+   continue
+ else:
+   c.close()
+   break
+```
+### Server:
+```
+import socket
+s=socket.socket()
+s.connect(('localhost',8000))
+while True:
+ print(s.recv(1024).decode())
+ s.send("Acknowledgement Recived".encode())
+```
 ## OUTPUT
+### Client:
+<img width="936" alt="Screenshot 2024-04-09 at 11 50 59 AM" src="https://github.com/aaron-h-2k5/2a_Stop_and_Wait_Protocol/assets/144250957/906643c0-d47f-4347-998a-355c24101b8a">
+
+### Server:
+<img width="936" alt="Screenshot 2024-04-09 at 11 51 03 AM" src="https://github.com/aaron-h-2k5/2a_Stop_and_Wait_Protocol/assets/144250957/89e34688-6baa-453c-ac09-5b8d7413e433">
+
 ## RESULT
 Thus, python program to perform stop and wait protocol was successfully executed.
